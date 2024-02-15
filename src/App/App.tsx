@@ -1,10 +1,14 @@
-
+import { RouterProvider } from "react-router-dom";
+import router from "./Router";
 function App() {
   return (
     <>
-      <h1 className="w-[300px] bg-green-400 text-3xl font-bold underline">
-        سلام
-      </h1>
+      <header className=" bg-green-400 p-3" >
+        <h1 className="w-auto text-2xl font-bold text-green-900">
+          پلتفرم اتتخاب استاد
+        </h1>
+      </header>
+      <RouterProvider router={router} />
     </>
   );
 }

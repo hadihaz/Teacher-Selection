@@ -1,0 +1,49 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "firstName": "hadi",
+      "lastname": "h",
+      "email": "hadi@gmail.com",
+      "password": "hadi1234",
+      "national_id_number": "123",
+      "phone_number": "123",
+      "student_number": "123",
+      "major_name": "computer engine"
+    },
+    {
+      "id": "2",
+      "firstName": "user2",
+      "lastname": "h",
+      "email": "user2@gmail.com",
+      "password": "123",
+      "national_id_number": "123",
+      "phone_number": "123",
+      "student_number": "123",
+      "major_name": "computer engine"
+    },
+    {
+      "id": "3",
+      "firstName": "user3",
+      "lastname": "h",
+      "email": "user3@gmail.com",
+      "password": "123",
+      "national_id_number": "123",
+      "phone_number": "123",
+      "student_number": "123",
+      "major_name": "computer engine"
+    },
+    {
+      "id": "d57b",
+      "firstname": "3user",
+      "lastname": "31321",
+      "email": "hadi@gmail.com",
+      "phone_number": "09999999999",
+      "national_id_number": "123",
+      "student_number": "123",
+      "major_name": "asdsad",
+      "password": "hadi1234",
+      "confirmPassword": "hadi1234"
+    }
+  ]
+}
