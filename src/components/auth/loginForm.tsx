@@ -31,38 +31,34 @@ const Loginform = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const [datafetch, setDatafetch] = useState([]);
   const [success, setSuccess] = useState<boolean | null>(null);
   const navigate = useNavigate();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (userData: any) => {
     fetch("http://localhost:3000/students", {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data", data);
-        setDatafetch(data);
-        // انجام اقدامات بعدی در صورت نیاز
+      
+        const userExist: any[] = data.filter(
+          (user: any) =>
+            user.email === userData.email && user.password === userData.password
+        );
+        if (userExist.length > 0) {
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1500);
+        } else {
+          setSuccess(false);
+        }
       })
       .catch((error) => {
         console.error("error", error);
-        // مدیریت خطا در صورت نیاز
+        setSuccess(false);
+
       });
-    const userExist: any[] = datafetch.filter(
-      (user: any) =>
-        user.email === data.email && user.password === data.password
-    );
-    if (userExist.length > 0) {
-      setSuccess(true);
-      console.log("true");
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1500);
-    } else {
-      setSuccess(false);
-      console.log("false");
-    }
   };
 
   return (
