@@ -56,6 +56,18 @@
       "major_name": "سسسس",
       "password": "123456789a",
       "confirmPassword": "123456789a"
+    },
+    {
+      "id": "c992",
+      "firstname": "asdas",
+      "lastname": "asdasda",
+      "email": "aaa@gmail.com",
+      "phone_number": "9142990569",
+      "national_id_number": "6545964",
+      "student_number": "65165",
+      "major_name": "asdasd",
+      "password": "1111aaaa",
+      "confirmPassword": "1111aaaa"
     }
   ]
 }

@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Alert from "../common/alert";
 import { setItem } from "../../core/localstorage/storage";
@@ -35,6 +35,7 @@ const Loginform = () => {
   });
   const [success, setSuccess] = useState<boolean | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onSubmit = (userData: any) => {
     fetch("http://localhost:3000/students", {
@@ -121,7 +122,7 @@ const Loginform = () => {
           <button
             onClick={() => {
               setTimeout(() => {
-                window.location.reload();
+                if (location.pathname == "/dashboard") window.location.reload();
               }, 1500);
             }}
             className="flex w-full justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

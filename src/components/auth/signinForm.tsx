@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Alert from "../common/alert";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const schema = yup
@@ -56,6 +56,7 @@ const SigninForm = () => {
   });
   const [success, setSuccess] = useState<boolean | null>(null);
   const navigate = useNavigate();
+  const location=useLocation()
   const onSubmit = (data: any) => {
     fetch("http://localhost:3000/students", {
       method: "POST",
@@ -285,7 +286,7 @@ const SigninForm = () => {
         <button
           onClick={() => {
             setTimeout(() => {
-              window.location.reload();
+              if (location.pathname == "/dashboard") window.location.reload();
             }, 1500);
           }}
           className="flex w-full justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
