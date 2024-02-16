@@ -44,6 +44,18 @@
       "major_name": "asdsad",
       "password": "hadi1234",
       "confirmPassword": "hadi1234"
+    },
+    {
+      "id": "0cfe",
+      "firstname": "هادی",
+      "lastname": "هادی",
+      "email": "hadi@gmail.com",
+      "phone_number": "09142992990",
+      "national_id_number": "123",
+      "student_number": "123",
+      "major_name": "سسسس",
+      "password": "123456789a",
+      "confirmPassword": "123456789a"
     }
   ]
 }

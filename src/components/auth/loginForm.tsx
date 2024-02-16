@@ -6,6 +6,8 @@ import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Alert from "../common/alert";
+import { setItem } from "../../core/localstorage/storage";
+
 const schema = yup
   .object({
     password: yup
@@ -40,13 +42,14 @@ const Loginform = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-      
         const userExist: any[] = data.filter(
           (user: any) =>
             user.email === userData.email && user.password === userData.password
         );
         if (userExist.length > 0) {
           setSuccess(true);
+          setItem("user1", JSON.stringify(userExist[0]));
+
           setTimeout(() => {
             navigate("/dashboard");
           }, 1500);
@@ -57,7 +60,6 @@ const Loginform = () => {
       .catch((error) => {
         console.error("error", error);
         setSuccess(false);
-
       });
   };
 
@@ -116,7 +118,14 @@ const Loginform = () => {
             فراموشی رمز عبور
           </Link>
 
-          <button className="flex w-full justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          <button
+            onClick={() => {
+              setTimeout(() => {
+                window.location.reload();
+              }, 1500);
+            }}
+            className="flex w-full justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
             ورود
           </button>
         </form>
