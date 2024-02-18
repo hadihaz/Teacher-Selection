@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Alert from "../common/alert";
 import { setItem } from "../../core/localstorage/storage";
+import { context } from "../../context/mainContext";
 
 const schema = yup
   .object({
@@ -36,7 +37,7 @@ const Loginform = () => {
   const [success, setSuccess] = useState<boolean | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const { dispatch } = useContext(context);
   const onSubmit = (userData: any) => {
     fetch("http://localhost:3000/students", {
       method: "GET",
@@ -50,9 +51,9 @@ const Loginform = () => {
         if (userExist.length > 0) {
           setSuccess(true);
           setItem("user1", JSON.stringify(userExist[0]));
-
           setTimeout(() => {
             navigate("/dashboard");
+            dispatch("user", userExist[0]);
           }, 1500);
         } else {
           setSuccess(false);

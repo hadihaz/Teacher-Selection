@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useEffect, useState } from "react";
@@ -37,8 +38,10 @@ const MainContext = ({ children }: { children: React.ReactNode }) => {
   }, []);
   const dispatch = (key: string, value: any) => {
     setState({ ...state, [key]: value });
+    
   };
   const isAuth = () => {
+    console.log(!!state.user.email)
     return !!state.user.email;
   };
   return (

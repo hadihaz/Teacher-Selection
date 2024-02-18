@@ -5,7 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Alert from "../common/alert";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { context } from "../../context/mainContext";
 
 const schema = yup
   .object({
@@ -56,7 +57,8 @@ const SigninForm = () => {
   });
   const [success, setSuccess] = useState<boolean | null>(null);
   const navigate = useNavigate();
-  const location=useLocation()
+  const location = useLocation();
+  const { dispatch } = useContext(context);
   const onSubmit = (data: any) => {
     fetch("http://localhost:3000/students", {
       method: "POST",
@@ -67,7 +69,9 @@ const SigninForm = () => {
     })
       .then((response) => response.json())
       .then((result) => {
+        // setItem("user1", JSON.stringify(data));
         console.log("نتیجه:", result);
+        dispatch("user", data);
         setSuccess(true);
         setTimeout(() => {
           navigate("/dashboard");
