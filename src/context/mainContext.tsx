@@ -41,7 +41,6 @@ const MainContext = ({ children }: { children: React.ReactNode }) => {
     
   };
   const isAuth = () => {
-    console.log(!!state.user.email)
     return !!state.user.email;
   };
   return (

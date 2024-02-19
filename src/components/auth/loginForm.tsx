@@ -116,7 +116,7 @@ const Loginform = () => {
             </div>
           </div>
           <br />
-          <Link className="text-blue-500" to={"/"}>
+          <Link className="text-gray-500" to={"/password"}>
             فراموشی رمز عبور
           </Link>
 
