@@ -7,6 +7,7 @@ import Alert from "../common/alert";
 // import {  useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { context } from "../../context/mainContext";
+import Modal from "../common/modal";
 
 const schema = yup
   .object({
@@ -30,7 +31,6 @@ const schema = yup
     //   .required("تأیید رمز عبور مورد نیاز است"),
     national_id_number: yup
       .string()
-
       .matches(/^\d+$/, "کد ملی باید فقط شامل اعداد باشد"),
     phone_number: yup
       .string()
@@ -43,6 +43,7 @@ const schema = yup
   .required();
 
 const ProfileChangeForm = () => {
+  const [showModal, setShowModal] = useState(false);
   const { user } = useContext(context);
   const [firstname, setFirstName] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -64,10 +65,6 @@ const ProfileChangeForm = () => {
   //   const navigate = useNavigate();
   //   const { dispatch } = useContext(context);
   const onSubmit = (data: any) => {
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(null);
-    }, 3000);
     // fetch("http://localhost:3000/students", {
     //   method: "POST",
     //   headers: {
@@ -90,10 +87,33 @@ const ProfileChangeForm = () => {
     //     setSuccess(false);
     //   });
     console.log(data);
+    setShowModal(true);
+  };
+  const modalAction = () => {
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(null);
+    }, 3000);
+    setShowModal(false);
+    // puth request for update profile
+  };
+  const modalCancel = () => {
+    setShowModal(false);
   };
 
   return (
-    <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div className="bg-white px-4 py-10 shadow sm:rounded-lg sm:px-10">
+      {showModal && (
+        <Modal
+          action={modalAction}
+          cancel={modalCancel}
+          buttonMessage="تغییر اطلاعات"
+          cancelMessage="لغو"
+          headerMessage="تغییر اطلاعات"
+          message="ایا میهواهید اطلاعاتتان تغییر کند."
+          alertColor="red"
+        />
+      )}
       <div className="h-[50px] mb-1">
         {success && <Alert message="تفییر مشخصات با موفقیت انجام شد. " />}
         {success === false && (
@@ -104,7 +124,7 @@ const ProfileChangeForm = () => {
         <div className=" gap-3 lg:flex">
           <div>
             <label
-              htmlFor="firmware"
+              htmlFor="firstname"
               className="block text-sm font-medium leading-6 text-gray-900 undefined"
             >
               نام
@@ -271,52 +291,7 @@ const ProfileChangeForm = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="lg:flex gap-2">
-            <div>
-                <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900 undefined"
-                >
-                رمز عبور
-                <span className="text-red-500">*</span>
-                </label>
-                <div className="mt-2">
-                <input
-                    {...register("password")}
-                    dir="ltr"
-                    id="password"
-                    type="password"
-                    autoComplete="off"
-                    className="px-2 outline-none block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                />
-                <p className="text-red-600">{errors.password?.message}</p>
-                </div>
-            </div>
-            <div>
-                <label
-                htmlFor="confirmpassword"
-                className="block text-sm font-medium leading-6 text-gray-900 undefined"
-                >
-                تأیید رمز عبور
-                <span className="text-red-500">*</span>
-                </label>
-                <div className="mt-2">
-                <input
-                    {...register("confirmPassword")}
-                    dir="ltr"
-                    id="confirmpassword"
-                    type="password"
-                    autoComplete="autoComplete"
-                    className="px-2 outline-none block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 "
-                />
-                <p className="text-red-600">{errors.confirmPassword?.message}</p>
-                </div>
-            </div>
-            </div> */}
-
         <br />
-
         <button className="flex  justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
           اعمال تغییرات
         </button>

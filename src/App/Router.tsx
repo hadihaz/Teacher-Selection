@@ -3,6 +3,7 @@ import Auth from "../pages/auth";
 import Dashboard from "../pages/dashboard";
 import ForgetPassword from "../pages/forgetPassword/forgetPassword";
 import Settings from "../pages/setting";
+import VerifyEmail from "../pages/verifyEmail";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/settings",
     element: <Settings />,
+  },
+  {
+    path: "/email",
+    element: <VerifyEmail />,
   },
 ]);
 

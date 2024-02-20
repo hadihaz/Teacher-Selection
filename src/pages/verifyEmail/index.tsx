@@ -11,21 +11,17 @@ import Alert from "../../components/common/alert";
 
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .email("قالب ایمیل معتبر نیست")
-      .required("ایمیل مورد نیاز است"),
+    code: yup.string().matches(/^\d+$/, "کد باید فقط شامل اعداد باشد"),
   })
   .required();
-
-const ForgetPassword = () => {
+const VerifyEmail = () => {
   const [success, setSuccess] = useState<boolean | null>(null);
 
   const { isAuth } = useContext(context);
   const navigate = useNavigate();
   useEffect(() => {
-    if (isAuth()) {
-      navigate("/dashboard");
+    if (!isAuth()) {
+      navigate("/");
     }
   }, []);
   const {
@@ -35,7 +31,7 @@ const ForgetPassword = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: { email: string }) => {
+  const onSubmit = (data: { code?: string }) => {
     setSuccess(true);
     console.log(data);
   };
@@ -44,42 +40,42 @@ const ForgetPassword = () => {
     <div className="flex justify-center mt-40">
       <div className="bg-white lg-w-1/4 px-4 py-10 shadow sm:rounded-lg sm:px-10">
         <div className="  mb-1">
-          {success && <Alert message="ایمیل ارسال شد." />}
+          {success && <Alert message="ایمیل شما با موفقیت تایید شد." />}
           {success === false && <Alert error={true} title="خطا در سیستم." />}
         </div>
         <h1 className="text-center text-2xl text-gray-700 mb-10">
-          فراموشی رمزعبور
+          تایید ایمیل
         </h1>
 
         <p className="text-gray-500 text-xs">
-          ایمیل خود را وارد کنید تا ایمیلی حاوی لینک تغییر رمزعبور برای شما
-          ارسال شود
+          لطفا کد تایید ارسال شده به ایمیلتان را وارد کنید.
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <label
-            htmlFor="email"
+            htmlFor="code"
             className="block text-sm font-medium leading-6 text-gray-900 undefined"
           ></label>
           <div className="mt-2">
             <input
-              {...register("email")}
+              {...register("code")}
               dir="ltr"
-              id="email"
-              type="email"
+              id="code"
+              type="text"
               autoComplete="autoComplete"
               className="px-2 outline-none block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 "
             />
-            <p className="text-red-600">{errors.email?.message}</p>
+            <p className="text-red-600">{errors.code?.message}</p>
           </div>
           <button className="mb-10 flex justify-center rounded-md bg-green-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-            ارسال
+            تایید
           </button>
           <div className=" text-center text-gray-500">
-            <Link to={"/"}>بازگشت</Link>
+            <Link to={"/settings"}>بازگشت</Link>
           </div>
         </form>
       </div>
     </div>
   );
 };
-export default ForgetPassword;
+
+export default VerifyEmail;

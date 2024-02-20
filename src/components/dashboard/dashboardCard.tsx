@@ -24,6 +24,7 @@ interface Imaster {
 const DashboardCard = () => {
   const [masters, setMasters] = useState<Imaster[]>([]);
   const [filterMasters, setFilterMasters] = useState<Imaster[]>([]);
+  const [currentMasters,setCurrentMasters]=useState<Imaster[]>([]);
   const tableCol = ["نام استاد", "نام درس", "ظرفیت", "ترم", "وضعیت"];
 
   const [showMobileMenu, ToggleShowMobileMenu] = useState(false);
@@ -32,10 +33,10 @@ const DashboardCard = () => {
   const [itemsPerPage] = useState<number>(5);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const totalPages = Math.ceil(masters.length / itemsPerPage);
+  const totalPages = Math.ceil(filterMasters.length / itemsPerPage);
   useEffect(() => {
-    setFilterMasters(masters.slice(indexOfFirstItem, indexOfLastItem));
-  }, [masters, currentPage, itemsPerPage]);
+     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
+  }, [filterMasters, currentPage, itemsPerPage]);
 
   useEffect(() => {
     fetch("http://localhost:3000/masters", {
@@ -57,10 +58,12 @@ const DashboardCard = () => {
       else if (filterType == "NotChecked") return master.requests.NotChecked;
       else if (filterType == "all") return master.requests;
     });
-    if (filterType != "all") setFilterMasters(filter);
-    else {
-      setFilterMasters(masters.slice(indexOfFirstItem, indexOfLastItem));
-    }
+    // if (filterType != "all") setFilterMasters(filter);
+    // else {
+    //   setFilterMasters(masters.slice(indexOfFirstItem, indexOfLastItem));
+    // }
+    setFilterMasters(filter);
+
   };
 
   return (
@@ -145,12 +148,12 @@ const DashboardCard = () => {
           </li>
         </ul>
       </div>
-      {filterMasters.length == 0 && (
+      {currentMasters.length == 0 && (
         <div className="bg-gray-50 text-center p-20 text-lg ">
           درخواستی یافت نشد!
         </div>
       )}
-      {filterMasters.length != 0 && (
+      {currentMasters.length != 0 && (
         <div className="mb-10">
           <div className=" -mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -169,7 +172,7 @@ const DashboardCard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white ">
-                  {filterMasters.map((user) => (
+                  {currentMasters.map((user) => (
                     <tr key={user.id}>
                       <td className=" whitespace-nowrap py-4 p-3 text-sm font-medium text-gray-900">
                         {user.firstname}
