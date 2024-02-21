@@ -3,18 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaCircleQuestion } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
-import Pagination from "../common/pagination";
+import Pagination from "../../common/pagination";
 import { RxDropdownMenu } from "react-icons/rx";
-import { context } from "../../context/mainContext";
-import { IstudentsRequests } from "../../core/interface/studentsRequests ";
+import { context } from "../../../context/mainContext";
+import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
 
-
-
-const DashboardCard = () => {
+const MasterRequestCards = () => {
   const [masters, setMasters] = useState<IstudentsRequests[]>([]);
   const [filterMasters, setFilterMasters] = useState<IstudentsRequests[]>([]);
   const [currentMasters, setCurrentMasters] = useState<IstudentsRequests[]>([]);
-  const tableCol = ["نام استاد", "نام درس", "ظرفیت", "ترم", "وضعیت"];
+  const tableCol = ["نام استاد", "نام درس", "ترم", "وضعیت"];
   const { user } = useContext(context);
   const [showMobileMenu, ToggleShowMobileMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -25,6 +23,7 @@ const DashboardCard = () => {
 
   useEffect(() => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
+    console.log(currentMasters)
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
     fetch("http://localhost:3000/studentsRequests", {
@@ -34,8 +33,12 @@ const DashboardCard = () => {
       .then((data) => {
         // setMasters(data);
         // setFilterMasters(data);
-        setMasters(data.filter((item:IstudentsRequests) => item.studentID == user.id));
-        setFilterMasters(data.filter((item:IstudentsRequests) => item.studentID == user.id));
+        setMasters(
+          data.filter((item: IstudentsRequests) => item.masterID == user.id)
+        );
+        setFilterMasters(
+          data.filter((item: IstudentsRequests) => item.masterID == user.id)
+        );
       })
       .catch((error) => {
         console.error("error", error);
@@ -62,7 +65,7 @@ const DashboardCard = () => {
           }}
           className="bg-gray-100 rounded-t-3xl text-base lg:text-xl py-1 px-5 mx-5 hover:bg-gray-200"
         >
-          درخواست های ثبت شده
+          درخواست های دریافت شده
         </p>
         <ul className="flex gap-7 mx-5">
           <li
@@ -79,7 +82,7 @@ const DashboardCard = () => {
             }}
             className="rounded-t-3xl hidden lg:flex justify-center w-32 text-center px-5 py-2 test-yellow-500 bg-yellow-100 hover:bg-yellow-200"
           >
-            در حال برسی
+            برسی نشده
           </li>
           <li
             onClick={() => {
@@ -111,7 +114,7 @@ const DashboardCard = () => {
                   ToggleShowMobileMenu(false);
                 }}
               >
-                در حال برسی
+                برسی نشده
               </li>
               <li
                 className="m-2 p-2 text-gray-500 "
@@ -161,15 +164,12 @@ const DashboardCard = () => {
                   {currentMasters.map((user) => (
                     <tr key={user.id}>
                       <td className=" whitespace-nowrap py-4 p-3 text-sm font-medium text-gray-900">
-                        {user.firstname}
-                        {user.lastname}
+                        {`${user.firstname} ${user.lastname}`}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {user.Course}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {user.capicity}
-                      </td>
+
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {user.term}
                       </td>
@@ -184,8 +184,8 @@ const DashboardCard = () => {
                           <span className="flex gap-1 items-center text-yellow-500">
                             <FaCircleQuestion />
                             <span>برسی نشده</span>
-                            <button className="rounded bg-red-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                              لغو درخواست
+                            <button className="rounded bg-yellow-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-yellow-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                              برسی درخواست
                             </button>
                           </span>
                         )}
@@ -213,4 +213,4 @@ const DashboardCard = () => {
   );
 };
 
-export default DashboardCard;
+export default MasterRequestCards;

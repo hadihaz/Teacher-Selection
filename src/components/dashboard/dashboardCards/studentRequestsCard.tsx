@@ -3,18 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaCircleQuestion } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
-import Pagination from "../common/pagination";
+import Pagination from "../../common/pagination";
 import { RxDropdownMenu } from "react-icons/rx";
-import { context } from "../../context/mainContext";
-import { IstudentsRequests } from "../../core/interface/studentsRequests ";
+import { context } from "../../../context/mainContext";
+import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
 
-
-
-const DashboardCard = () => {
+const StudentRequestsCard = () => {
   const [masters, setMasters] = useState<IstudentsRequests[]>([]);
   const [filterMasters, setFilterMasters] = useState<IstudentsRequests[]>([]);
   const [currentMasters, setCurrentMasters] = useState<IstudentsRequests[]>([]);
-  const tableCol = ["نام استاد", "نام درس", "ظرفیت", "ترم", "وضعیت"];
+  const tableCol = ["نام استاد", "نام درس", "ترم", "وضعیت"];
   const { user } = useContext(context);
   const [showMobileMenu, ToggleShowMobileMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -34,8 +32,12 @@ const DashboardCard = () => {
       .then((data) => {
         // setMasters(data);
         // setFilterMasters(data);
-        setMasters(data.filter((item:IstudentsRequests) => item.studentID == user.id));
-        setFilterMasters(data.filter((item:IstudentsRequests) => item.studentID == user.id));
+        setMasters(
+          data.filter((item: IstudentsRequests) => item.studentID == user.id)
+        );
+        setFilterMasters(
+          data.filter((item: IstudentsRequests) => item.studentID == user.id)
+        );
       })
       .catch((error) => {
         console.error("error", error);
@@ -161,15 +163,12 @@ const DashboardCard = () => {
                   {currentMasters.map((user) => (
                     <tr key={user.id}>
                       <td className=" whitespace-nowrap py-4 p-3 text-sm font-medium text-gray-900">
-                        {user.firstname}
-                        {user.lastname}
+                        {`${user.firstname} ${user.lastname}`}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {user.Course}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {user.capicity}
-                      </td>
+
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {user.term}
                       </td>
@@ -213,4 +212,4 @@ const DashboardCard = () => {
   );
 };
 
-export default DashboardCard;
+export default StudentRequestsCard;

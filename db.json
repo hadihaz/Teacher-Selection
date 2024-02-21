@@ -1,5 +1,5 @@
 {
-  "students": [
+  "users": [
     {
       "id": "c3bb",
       "firstname": "هادی",
@@ -10,12 +10,39 @@
       "student_number": "123456789",
       "major_name": "مهندسی کامپیوتر",
       "password": "1234hadi",
-      "usetype":"student"
+      "usertype": "student"
+    },
+    {
+      "id": "1",
+      "firstname": "استاد",
+      "lastname": "1",
+      "email": "ostad@gmail.com",
+      "password": "ostad1234",
+      "national_id_number": "1234",
+      "phone_number": "9149999999",
+      "usertype": "master"
     }
   ],
   "studentsRequests": [
     {
-      "id": "1asdas1",
+      "id": "1as752572das1",
+      "requests": {
+        "acceptsd": true,
+        "rejected": false,
+        "NotChecked": false
+      },
+      "studentID": "c3b",
+      "masterID": "1",
+      "req": "درخواست پذیرش",
+      "res": "پاسخ درخواست",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": "مهندسی کامپیوتر",
+      "firstname": "درخواست",
+      "lastname": "1"
+    },
+    {
+      "id": "1asd275257as12",
       "requests": {
         "acceptsd": true,
         "rejected": false,
@@ -28,31 +55,54 @@
       "capicity": "10",
       "term": "1402/1403",
       "Course": "مهندسی کامپیوتر",
-      "firstName": "استاد1",
-      "lastname": "استاد1"
-    }
-  ],
-  "masters": [
+      "firstname": "درخواست",
+      "lastname": "2"
+    },
     {
-      "id": "1",
-      "firstName": "استاد1",
-      "lastname": "استاد1",
-      "email": "ostad@gmail.com",
-      "password": "ostad1234",
-      "national_id_number": "1234",
-      "phone_number": "9149999999",
-      "usetype":"master"
+      "id": "1asd572572as12",
+      "requests": {
+        "acceptsd": false,
+        "rejected": false,
+        "NotChecked": true
+      },
+      "studentID": "c3bb",
+      "masterID": "1",
+      "req": "درخواست پذیرش",
+      "res": "پاسخ درخواست",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": "مهندسی کامپیوتر",
+      "firstname": "درخواست",
+      "lastname": "3"
+    },
+    {
+      "id": "1asda525727s13",
+      "requests": {
+        "acceptsd": false,
+        "rejected": true,
+        "NotChecked": false
+      },
+      "studentID": "c3bb",
+      "masterID": "1",
+      "req": "درخواست پذیرش",
+      "res": "پاسخ درخواست",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": "مهندسی کامپیوتر",
+      "firstname": "درخواست",
+      "lastname": "4"
     }
   ],
-  "masterCourse": [
+  "masterCourses": [
     {
       "id": "1asdas1",
       "capicity": "10",
       "term": "1402/1403",
       "Course": "مهندسی کامپیوتر",
-      "firstName": "استاد1",
+      "firstname": "استاد1",
       "lastname": "استاد1",
-      "email": "ostad@gmail.com"
+      "email": "ostad@gmail.com",
+      "masterID": "1"
     }
   ]
 }
