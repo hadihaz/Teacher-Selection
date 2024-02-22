@@ -1,20 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
-// import { FaCheckCircle } from "react-icons/fa";
-// import { FaCircleQuestion } from "react-icons/fa6";
-// import { IoMdCloseCircle } from "react-icons/io";
+
 import Pagination from "../../common/pagination";
-// import { RxDropdownMenu } from "react-icons/rx";
 import { context } from "../../../context/mainContext";
 import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
 
 const AllRequestsCard = () => {
-  //   const [masters, setMasters] = useState<IstudentsRequests[]>([]);
   const [filterMasters, setFilterMasters] = useState<IstudentsRequests[]>([]);
   const [currentMasters, setCurrentMasters] = useState<IstudentsRequests[]>([]);
   const tableCol = ["نام استاد", "نام درس", "ظرفیت", "ترم"];
   const { user } = useContext(context);
-  //   const [showMobileMenu, ToggleShowMobileMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage] = useState<number>(5);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -25,12 +20,11 @@ const AllRequestsCard = () => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
-    fetch("http://localhost:3000/masterCourse", {
+    fetch("http://localhost:3000/masterCourses", {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
-        // setMasters(data);
         setFilterMasters(data);
       })
       .catch((error) => {
@@ -38,15 +32,6 @@ const AllRequestsCard = () => {
       });
   }, [user]);
 
-  //   const changeFilter = (filterType: string) => {
-  //     const filter = masters.filter((master) => {
-  //       if (filterType == "acceptsd") return master.requests.acceptsd;
-  //       else if (filterType == "rejected") return master.requests.rejected;
-  //       else if (filterType == "NotChecked") return master.requests.NotChecked;
-  //       else if (filterType == "all") return master.requests;
-  //     });
-  //     setFilterMasters(filter);
-  //   };
 
   return (
     <>

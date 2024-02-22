@@ -4,6 +4,7 @@ import Dashboard from "../pages/dashboard";
 import ForgetPassword from "../pages/forgetPassword/forgetPassword";
 import Settings from "../pages/setting";
 import VerifyEmail from "../pages/verifyEmail";
+import NotFound from "../pages/notFound";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/email",
     element: <VerifyEmail />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
