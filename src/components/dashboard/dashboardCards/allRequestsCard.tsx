@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import Pagination from "../../common/pagination";
 import { context } from "../../../context/mainContext";
 import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
+import { Link } from "react-router-dom";
 
 const AllRequestsCard = () => {
   const [filterMasters, setFilterMasters] = useState<IstudentsRequests[]>([]);
@@ -31,7 +32,6 @@ const AllRequestsCard = () => {
         console.error("error", error);
       });
   }, [user]);
-
 
   return (
     <>
@@ -86,7 +86,7 @@ const AllRequestsCard = () => {
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <button className="rounded bg-green-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                          ثبت درخواست
+                          <Link to={`/dashboard/masters/${user.id}`}>ثبت درخواست</Link>
                         </button>
                       </td>
                     </tr>

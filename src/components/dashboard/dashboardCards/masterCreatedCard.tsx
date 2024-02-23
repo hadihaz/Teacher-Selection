@@ -4,6 +4,7 @@ import Pagination from "../../common/pagination";
 import { context } from "../../../context/mainContext";
 import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
 import { ImasterCourses } from "../../../core/interface/masterCourses";
+import { Link } from "react-router-dom";
 
 const MasterCreatedCard = () => {
   const [filterMasters, setFilterMasters] = useState<IstudentsRequests[]>([]);
@@ -84,7 +85,8 @@ const MasterCreatedCard = () => {
                       </td>
                       <td>
                         <button className="rounded bg-green-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                          مشاهده 
+                          <Link to={`/dashboard/masters/${user.id}`}>مشاهده</Link>
+
                         </button>
                       </td>
                     </tr>

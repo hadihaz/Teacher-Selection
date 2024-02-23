@@ -5,6 +5,8 @@ import ForgetPassword from "../pages/forgetPassword/forgetPassword";
 import Settings from "../pages/setting";
 import VerifyEmail from "../pages/verifyEmail";
 import NotFound from "../pages/notFound";
+import RequestsPage from "../pages/teacherselection/request";
+import MastersPage from "../pages/teacherselection/masters";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />,
+  },
+  {
+    path: "/dashboard/masters/:id",
+    element: <MastersPage />,
+  },
+  {
+    path: "/dashboard/requests/:id",
+    element: <RequestsPage />,
   },
 ]);
 

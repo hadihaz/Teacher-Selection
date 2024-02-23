@@ -7,6 +7,7 @@ import Pagination from "../../common/pagination";
 import { RxDropdownMenu } from "react-icons/rx";
 import { context } from "../../../context/mainContext";
 import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
+import { Link } from "react-router-dom";
 
 const MasterRequestCards = () => {
   const [masters, setMasters] = useState<IstudentsRequests[]>([]);
@@ -23,7 +24,7 @@ const MasterRequestCards = () => {
 
   useEffect(() => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
-    console.log(currentMasters)
+    console.log(currentMasters);
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
     fetch("http://localhost:3000/studentsRequests", {
@@ -183,10 +184,7 @@ const MasterRequestCards = () => {
                         {user.requests.NotChecked && (
                           <span className="flex gap-1 items-center text-yellow-500">
                             <FaCircleQuestion />
-                            <span>برسی نشده</span>
-                            <button className="rounded bg-yellow-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-yellow-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                              برسی درخواست
-                            </button>
+                            <p>برسی نشده</p>
                           </span>
                         )}
                         {user.requests.rejected && (
@@ -195,6 +193,13 @@ const MasterRequestCards = () => {
                             <p>رد شده</p>
                           </span>
                         )}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <button className="rounded bg-green-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                          <Link to={`/dashboard/requests/${user.id}`}>
+                             مشاهده
+                          </Link>
+                        </button>
                       </td>
                     </tr>
                   ))}

@@ -7,6 +7,7 @@ import Pagination from "../../common/pagination";
 import { RxDropdownMenu } from "react-icons/rx";
 import { context } from "../../../context/mainContext";
 import { IstudentsRequests } from "../../../core/interface/studentsRequests ";
+import { Link } from "react-router-dom";
 
 const StudentRequestsCard = () => {
   const [masters, setMasters] = useState<IstudentsRequests[]>([]);
@@ -81,7 +82,7 @@ const StudentRequestsCard = () => {
             }}
             className="rounded-t-3xl hidden lg:flex justify-center w-32 text-center px-5 py-2 test-yellow-500 bg-yellow-100 hover:bg-yellow-200"
           >
-            در حال برسی
+            برسی نشده
           </li>
           <li
             onClick={() => {
@@ -113,7 +114,7 @@ const StudentRequestsCard = () => {
                   ToggleShowMobileMenu(false);
                 }}
               >
-                در حال برسی
+                برسی نشده
               </li>
               <li
                 className="m-2 p-2 text-gray-500 "
@@ -182,10 +183,7 @@ const StudentRequestsCard = () => {
                         {user.requests.NotChecked && (
                           <span className="flex gap-1 items-center text-yellow-500">
                             <FaCircleQuestion />
-                            <span>برسی نشده</span>
-                            <button className="rounded bg-red-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                              لغو درخواست
-                            </button>
+                            <p>برسی نشده</p>
                           </span>
                         )}
                         {user.requests.rejected && (
@@ -194,6 +192,11 @@ const StudentRequestsCard = () => {
                             <p>رد شده</p>
                           </span>
                         )}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <button className="rounded bg-green-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                          <Link to={`/dashboard/requests/${user.id}`}>مشاهده</Link>
+                        </button>
                       </td>
                     </tr>
                   ))}
