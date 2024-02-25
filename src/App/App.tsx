@@ -1,9 +1,12 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./Router";
+import { Suspense } from "react";
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div>در حال بارگزاری...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </>
   );
 }

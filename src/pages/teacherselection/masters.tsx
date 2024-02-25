@@ -1,21 +1,30 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import DashboardHeader from "../../components/dashboard/dashboardHeader";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { context } from "../../context/mainContext";
-import { masterCourses } from "../../../db.json";
+import { ImasterCourses } from "../../core/interface/masterCourses";
 const MastersPage = () => {
   const { id } = useParams();
 
   const { isAuth, getUserType } = useContext(context);
-  const navigate = useNavigate();
-  if (!isAuth()) {
-    navigate("/");
-  }
 
-  const req = masterCourses.filter((item) => {
-    return item.id == id;
-  });
-  const data = req[0];
+  const [data, setdata] = useState<ImasterCourses>();
+  useEffect(() => {
+    fetch("http://localhost:3000/masterCourses", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setdata(data.filter((item: ImasterCourses) => item?.id == id)[0]);
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+  }, [id]);
+
+  if (!isAuth()) {
+    return <Navigate to={"/"}></Navigate>;
+  }
   return (
     <div>
       <div className="mb-20">
@@ -32,19 +41,19 @@ const MastersPage = () => {
           <div className="lg:flex gap-4 sm:m-5">
             <div className="flex gap-2 p-5 border-2 my-4">
               <p className="text-gray-600 w-16">نام استاد:</p>
-              <p className="text-gray-900">{`${data.firstname} ${data.lastname}`}</p>
+              <p className="text-gray-900">{`${data?.firstname} ${data?.lastname}`}</p>
             </div>
             <div className="flex gap-2 p-5 border-2 my-4">
               <p className="text-gray-600 w-16">نام درس:</p>
-              <p className="text-gray-900">{`${data.Course} `}</p>
+              <p className="text-gray-900">{`${data?.Course} `}</p>
             </div>
             <div className="flex gap-2 p-5 border-2 my-4">
               <p className="text-gray-600 w-16"> ظرفیت:</p>
-              <p className="text-gray-900">{`${data.capicity} `}</p>
+              <p className="text-gray-900">{`${data?.capicity} `}</p>
             </div>
             <div className="flex gap-2 p-5 border-2 my-4">
               <p className="text-gray-600 w-16"> ترم:</p>
-              <p className="text-gray-900">{`${data.term} `}</p>
+              <p className="text-gray-900">{`${data?.term} `}</p>
             </div>
           </div>
           <div className="mb-3  gap-4 sm:m-5">
