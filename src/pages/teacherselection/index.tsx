@@ -49,7 +49,7 @@ const Teacherselectionrequest = () => {
             <div className="flex gap-2 p-5 border-2 my-4">
               <p className="text-gray-600 w-16"> وضعیت:</p>
               <div>
-                {data.requests.acceptsd && (
+                {data.requests.accepted && (
                   <span className="flex gap-1 items-center text-green-500">
                     <FaCheckCircle />
                     <p>پذیرفته شده</p>

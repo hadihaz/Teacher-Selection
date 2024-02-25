@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: Vazir-Medium;
-  src: url(./src/assets/fonts/Vazir-Medium.ttf);
+  src: url("../src/assets/fonts/Vazir-Medium.ttf");
 }
 * {
   font-family: Vazir-Medium;
