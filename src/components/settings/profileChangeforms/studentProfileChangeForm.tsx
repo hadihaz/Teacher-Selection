@@ -81,7 +81,7 @@ const StudentProfileChangeForm = () => {
           cancelMessage="لغو"
           headerMessage="تغییر اطلاعات"
           message="ایا میخواهید اطلاعاتتان تغییر کند."
-          alertColor="red"
+          color="yellow"
         />
       )}
       <div className="h-[50px] mb-1">

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate,  useParams } from "react-router-dom";
 import DashboardHeader from "../../components/dashboard/dashboardHeader";
 import { useContext } from "react";
 import { context } from "../../context/mainContext";
@@ -10,22 +10,22 @@ const RequestsPage = () => {
   const { id } = useParams();
 
   const { isAuth, getUserType } = useContext(context);
-  const navigate = useNavigate();
-  if (!isAuth()) {
-    navigate("/");
-  }
+  // const navigate = useNavigate();
 
   const req = studentsRequests.filter((item) => {
     return item.id == id;
   });
   const data = req[0];
+  if (!isAuth()) {
+    return <Navigate to={"/"}></Navigate>;
+  }
   return (
     <div>
       <div className="mb-20">
         <DashboardHeader menuOptins="صفحه اصلی" address="/dashboard" />
       </div>
       <div className="w-screen px-5 sm:px-10 md:px-28 py-10 mt-20 ">
-        <h1 className= "flex justify-between text-gray-500 text-xl border-b-2 p-1 mb-10">
+        <h1 className="flex justify-between text-gray-500 text-xl border-b-2 p-1 mb-10">
           <p>اطلاعات درخواست</p>
           <button className="text-xs mx-1 rounded bg-gray-400 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
             <Link to={"/dashboard"}>بازگشت</Link>
@@ -124,7 +124,6 @@ const RequestsPage = () => {
                 </button>
               </>
             )}
-          
           </div>
         </div>
       </div>
