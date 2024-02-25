@@ -6,12 +6,15 @@ import { FaCircleQuestion } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { IstudentsRequests } from "../../core/interface/studentsRequests ";
+import Modal from "../../components/common/modal";
+
 const RequestsPage = () => {
   const { id } = useParams();
-
   const { isAuth, getUserType } = useContext(context);
-
   const [data, setdata] = useState<IstudentsRequests>();
+  const [masterRes, setMasterRes] = useState(data?.res);
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:3000/studentsRequests", {
       method: "GET",
@@ -25,18 +28,78 @@ const RequestsPage = () => {
       });
   }, [id]);
 
+  const [modalInfo, setModalInfo] = useState({
+    buttonMessage: "",
+    cancelMessage: "",
+    headerMessage: "",
+    message: "",
+    color: "",
+  });
+  const [fetchActionType, setFetchActionType] = useState("");
+  const activModal = (action: string) => {
+    switch (action) {
+      case "dalate":
+        setModalInfo({
+          buttonMessage: "حذف درخواست",
+          cancelMessage: "لغو",
+          headerMessage: "حذف درخواست",
+          message: "ایا میخواهید درخواستتان را حذف کنید.",
+          color: "red",
+        });
+        setFetchActionType("dalate");
+        break;
+      case "accept":
+        setModalInfo({
+          buttonMessage: "قبول درخواست",
+          cancelMessage: "لغو",
+          headerMessage: "قبول درخواست",
+          message: "ایا میخواهید درخواستت را فبول کنید.",
+          color: "green",
+        });
+        setFetchActionType("dalate");
+        break;
+      case "reject":
+        setModalInfo({
+          buttonMessage: "رد درخواست",
+          cancelMessage: "لغو",
+          headerMessage: "رد درخواست",
+          message: "ایا میخواهید درخواست را رد کنید.",
+          color: "red",
+        });
+        setFetchActionType("dalate");
+        break;
+    }
+    setShowModal(true);
+  };
+  const activeFetch = () => {
+    setShowModal(false);
+    console.log(fetchActionType);
+  };
+
   if (!isAuth()) {
     return <Navigate to={"/"}></Navigate>;
   }
-
   return (
     <>
+      {showModal && (
+        <Modal
+          action={activeFetch}
+          cancel={() => {
+            setShowModal(false);
+          }}
+          buttonMessage={modalInfo?.buttonMessage}
+          cancelMessage={modalInfo.cancelMessage}
+          headerMessage={modalInfo.headerMessage}
+          message={modalInfo.message}
+          color={modalInfo.color}
+        />
+      )}
       {data && (
         <div>
           <div className="mb-20">
             <DashboardHeader menuOptins="صفحه اصلی" address="/dashboard" />
           </div>
-          <div className="w-screen px-5 sm:px-10 md:px-28 py-10 mt-20 ">
+          <div className=" px-5 sm:px-10 md:px-28 py-10 mt-20 ">
             <h1 className="flex justify-between text-gray-500 text-xl border-b-2 p-1 mb-10">
               <p>اطلاعات درخواست</p>
               <button className="text-xs mx-1 rounded bg-gray-400 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
@@ -115,23 +178,34 @@ const RequestsPage = () => {
                       id="message"
                       rows={4}
                       className="block p-2.5 w-full text-sm text-gray-400 bg-gray-50 rounded-lg border "
-                      value={data?.res}
+                      value={masterRes}
+                      placeholder={data?.res}
+                      onChange={(e) => setMasterRes(e.target.value)}
                     ></textarea>
                   </div>
                 )}
               </div>
               <div className="lg:flex gap-4 sm:m-5 ">
                 {data?.requests.NotChecked && getUserType() == "student" && (
-                  <button className="rounded bg-red-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                  <button
+                    className="rounded bg-red-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    onClick={() => activModal("dalate")}
+                  >
                     لغو درخواست
                   </button>
                 )}
                 {data?.requests.NotChecked && getUserType() == "master" && (
                   <>
-                    <button className="mx-1 rounded bg-green-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                    <button
+                      className="mx-1 rounded bg-green-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      onClick={() => activModal("accept")}
+                    >
                       قبول درخواست
                     </button>
-                    <button className="mx-1 rounded bg-red-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                    <button
+                      className="mx-1 rounded bg-red-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      onClick={() => activModal("reject")}
+                    >
                       رد درخواست
                     </button>
                   </>
