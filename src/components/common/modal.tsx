@@ -7,7 +7,7 @@ interface IModelProps {
   cancelMessage: string;
   headerMessage: string;
   message: string;
-  alertColor: string;
+  color?: string;
 }
 const Modal: React.FC<IModelProps> = ({
   action,
@@ -16,7 +16,7 @@ const Modal: React.FC<IModelProps> = ({
   cancelMessage,
   headerMessage,
   message,
-//   alertColor,
+  color = "gray",
 }) => {
   return (
     <div
@@ -30,8 +30,20 @@ const Modal: React.FC<IModelProps> = ({
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
             <div className="sm:flex sm:items-start gap-3">
-              <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
-                <CiWarning className={`h-6 w-6 text-gray-600 `}/>
+              <div
+                className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full  sm:mx-0 sm:h-10 sm:w-10
+                ${
+                  color == "green" || color == "gray"
+                    ? color == "green"
+                      ? "text-green-600 bg-green-100"
+                      : "text-gray-600 bg-gray-100"
+                    : color == "red"
+                    ? "text-red-600 bg-red-100"
+                    : "text-yellow-500 bg-yellow-100"
+                }
+                `}
+              >
+                <CiWarning className={`h-6 w-6 `} />
               </div>
               <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-right">
                 <h3
@@ -49,7 +61,18 @@ const Modal: React.FC<IModelProps> = ({
               <button
                 type="button"
                 onClick={action}
-                className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
+                // className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
+                className={`
+                ${
+                  color == "green" || color == "gray"
+                    ? color == "green"
+                      ? "bg-green-600 hover:bg-green-500"
+                      : "bg-gray-600 hover:bg-gray-500"
+                    : color == "red"
+                    ? "bg-red-600 hover:bg-red-500"
+                    : "bg-yellow-500 hover:bg-yellow-400"
+                }
+                inline-flex w-full justify-center rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm  sm:ml-3 sm:w-auto`}
               >
                 {buttonMessage}
               </button>

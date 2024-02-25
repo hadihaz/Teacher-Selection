@@ -27,7 +27,7 @@
     {
       "id": "1as752572das1",
       "requests": {
-        "acceptsd": true,
+        "accepted": true,
         "rejected": false,
         "NotChecked": false
       },
@@ -44,7 +44,7 @@
     {
       "id": "1asd275257as12",
       "requests": {
-        "acceptsd": true,
+        "accepted": true,
         "rejected": false,
         "NotChecked": false
       },
@@ -61,7 +61,7 @@
     {
       "id": "1asd572572as12",
       "requests": {
-        "acceptsd": false,
+        "accepted": false,
         "rejected": false,
         "NotChecked": true
       },
@@ -78,7 +78,7 @@
     {
       "id": "1asda525727s13",
       "requests": {
-        "acceptsd": false,
+        "accepted": false,
         "rejected": true,
         "NotChecked": false
       },

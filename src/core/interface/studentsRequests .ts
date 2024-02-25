@@ -4,7 +4,7 @@ export interface IstudentsRequests {
   lastname: string;
   capicity: string;
   requests: {
-    acceptsd: boolean;
+    accepted: boolean;
     rejected: boolean;
     NotChecked: boolean;
   };

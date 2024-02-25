@@ -47,7 +47,7 @@ const StudentRequestsCard = () => {
 
   const changeFilter = (filterType: string) => {
     const filter = masters.filter((master) => {
-      if (filterType == "acceptsd") return master.requests.acceptsd;
+      if (filterType == "accepted") return master.requests.accepted;
       else if (filterType == "rejected") return master.requests.rejected;
       else if (filterType == "NotChecked") return master.requests.NotChecked;
       else if (filterType == "all") return master.requests;
@@ -70,7 +70,7 @@ const StudentRequestsCard = () => {
         <ul className="flex gap-7 mx-5">
           <li
             onClick={() => {
-              changeFilter("acceptsd");
+              changeFilter("accepted");
             }}
             className="rounded-t-3xl hidden lg:flex justify-center w-32 text-center px-5 py-2 test-green-500 bg-green-100 hover:bg-green-200"
           >
@@ -101,7 +101,7 @@ const StudentRequestsCard = () => {
               <li
                 className="m-2 p-2 text-gray-500 border-b-2"
                 onClick={() => {
-                  changeFilter("acceptsd");
+                  changeFilter("accepted");
                   ToggleShowMobileMenu(false);
                 }}
               >
@@ -174,7 +174,7 @@ const StudentRequestsCard = () => {
                         {user.term}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {user.requests.acceptsd && (
+                        {user.requests.accepted && (
                           <span className="flex gap-1 items-center text-green-500">
                             <FaCheckCircle />
                             <p>پذیرفته شده</p>
