@@ -44,6 +44,9 @@ const MasterCreatedCard = () => {
         >
           درخواست های ایجاد شده
         </p>
+        <button className="rounded-t-3xl hidden lg:flex justify-center w-auto text-center px-5 py-2 test-green-500 bg-green-100 hover:bg-green-200">
+          <Link to={`/dashboard/create`}>افزودن درس</Link>
+        </button>
       </div>
       {currentMasters.length == 0 && (
         <div className="bg-gray-50 text-center p-20 text-lg ">
@@ -85,8 +88,9 @@ const MasterCreatedCard = () => {
                       </td>
                       <td>
                         <button className="rounded bg-green-500 px-2 py-1  mr-5  text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                          <Link to={`/dashboard/masters/${user.id}`}>مشاهده</Link>
-
+                          <Link to={`/dashboard/masters/${user.id}`}>
+                            مشاهده
+                          </Link>
                         </button>
                       </td>
                     </tr>

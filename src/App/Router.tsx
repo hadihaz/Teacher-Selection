@@ -7,6 +7,7 @@ import VerifyEmail from "../pages/verifyEmail";
 import NotFound from "../pages/notFound";
 import RequestsPage from "../pages/teacherselection/request";
 import MastersPage from "../pages/teacherselection/masters";
+import CreateCourse from "../pages/createCourse";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard/requests/:id",
     element: <RequestsPage />,
+  },
+  {
+    path: "/dashboard/create",
+    element: <CreateCourse />,
   },
 ]);
 

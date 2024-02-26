@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Alert from "../../common/alert";
-// import {  useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { context } from "../../../context/mainContext";
 import Modal from "../../common/modal";
@@ -37,7 +36,7 @@ const MasterProfileChangeForm = () => {
     setEmail(user.email);
     setNational_id_number(user.national_id_number);
     setPhone_number(user.phone_number);
-  }, [user,]);
+  }, [user]);
   const {
     register,
     handleSubmit,
@@ -78,12 +77,6 @@ const MasterProfileChangeForm = () => {
           setSuccess(null);
         }, 2000);
       });
-
-    // setSuccess(true);
-    // setTimeout(() => {
-    //   setSuccess(null);
-    // }, 3000);
-    // puth request for update profile
   };
   const modalCancel = () => {
     setShowModal(false);

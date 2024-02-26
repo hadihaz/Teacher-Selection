@@ -192,20 +192,22 @@ const MastersPage = () => {
                   <p className="text-gray-900">{`${data?.term} `}</p>
                 </div>
               </div>
-              <div className="mb-3  gap-4 sm:m-5">
-                <div className=" ">
-                  <p className="text-gray-600 p-2 "> متن درخواست:</p>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    className="block p-2.5 w-full text-sm text-gray-400 bg-gray-50 rounded-lg border "
-                    value={studentReq}
-                    onChange={(e) => {
-                      setStudentReq(e.target.value);
-                    }}
-                  ></textarea>
+              {getUserType() == "student" && (
+                <div className="mb-3  gap-4 sm:m-5">
+                  <div className=" ">
+                    <p className="text-gray-600 p-2 "> متن درخواست:</p>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      className="block p-2.5 w-full text-sm text-gray-400 bg-gray-50 rounded-lg border "
+                      value={studentReq}
+                      onChange={(e) => {
+                        setStudentReq(e.target.value);
+                      }}
+                    ></textarea>
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="lg:flex gap-4 sm:m-5 ">
                 {getUserType() == "master" && (

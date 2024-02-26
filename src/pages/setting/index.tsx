@@ -20,7 +20,6 @@ const Settings = () => {
         <br />
         <br />
         <h1 className="text-gray-500 text-xl border-b-2 p-1">تغییر رمز عبور</h1>
-
         <ChangePassword />
       </div>
     </div>
