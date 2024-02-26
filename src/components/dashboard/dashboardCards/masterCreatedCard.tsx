@@ -44,8 +44,12 @@ const MasterCreatedCard = () => {
         >
           درخواست های ایجاد شده
         </p>
+        
         <button className="rounded-t-3xl hidden lg:flex justify-center w-auto text-center px-5 py-2 test-green-500 bg-green-100 hover:bg-green-200">
           <Link to={`/dashboard/create`}>افزودن درس</Link>
+        </button>
+        <button className="rounded-t-3xl lg:hidden flex justify-center w-auto text-center px-5 py-2 test-green-500 bg-green-100 hover:bg-green-200">
+          <Link to={`/dashboard/create`}>+</Link>
         </button>
       </div>
       {currentMasters.length == 0 && (

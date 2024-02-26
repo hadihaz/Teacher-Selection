@@ -35,12 +35,8 @@ const AllRequestsCard = () => {
 
   return (
     <>
-      <div className="border-b-2 border-gray-700  flex justify-between">
+      <div className="border-b-2 border-gray-700  flex justify-start">
         <p
-          onClick={() => {
-            // changeFilter("all");
-            // ToggleShowMobileMenu(false);
-          }}
           className="bg-gray-100 rounded-t-3xl text-base lg:text-xl py-1 px-5 mx-5 hover:bg-gray-200"
         >
           همه اساتید

@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import DashboardHeader from "../../components/dashboard/dashboardHeader";
 import { context } from "../../context/mainContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -78,7 +78,12 @@ const CreateCourse = () => {
         <DashboardHeader menuOptins="صفحه اصلی" address="/dashboard" />
       </div>
       <div className="px-5 sm:px-10 md:px-28 py-10">
-        <h1 className="text-gray-500 text-xl border-b-2 p-1">افزودن درس</h1>
+       <div className="flex justify-between">
+       <h1 className="text-gray-500 text-xl border-b-2 p-1">افزودن درس</h1>
+        <button className="text-xs mx-1 rounded  px-2 py-1 text-md font-semibold shadow-sm text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+          <Link to={"/dashboard"}>بازگشت</Link>
+        </button>
+       </div>
         <>
           {showModal && (
             <Modal
@@ -98,7 +103,7 @@ const CreateCourse = () => {
             )}
           </div>
         </>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-20">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
           <div className=" gap-3 lg:flex">
             <div>
               <label
