@@ -6,6 +6,7 @@ import { studentsRequests } from "../../../db.json";
 import { FaCircleQuestion } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
+import Alert from "../../components/common/alert";
 const Teacherselectionrequest = () => {
   const { id } = useParams();
 
@@ -15,10 +16,15 @@ const Teacherselectionrequest = () => {
     navigate("/");
   }
 
-  const req = studentsRequests.filter((item) => {
-    return item.id == id;
-  });
-  const data = req[0];
+  const [seccess, setSeccess] = useState(false);
+  const [alertError, setAlertError] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+
+  // const req = studentsRequests.filter((item) => {
+  //   return item.id == id;
+  // });
+  // const data = req[0];
   return (
     <div>
       <div className="mb-20">
@@ -28,6 +34,9 @@ const Teacherselectionrequest = () => {
         <h1 className="text-gray-500 text-xl border-b-2 p-1 mb-10">
           اطلاعات درخواست
         </h1>
+        {seccess && (
+          <Alert error={alertError} title={alertTitle} message={alertMessage} />
+        )}
         <div className="bg-gray-50 p-2">
           <div className="lg:flex gap-4 sm:m-5">
             <div className="flex gap-2 p-5 border-2 my-4">

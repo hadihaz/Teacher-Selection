@@ -1,13 +1,27 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import DashboardHeader from "../../components/dashboard/dashboardHeader";
 import { useContext, useEffect, useState } from "react";
 import { context } from "../../context/mainContext";
 import { ImasterCourses } from "../../core/interface/masterCourses";
 import Modal from "../../components/common/modal";
+import Alert from "../../components/common/alert";
 const MastersPage = () => {
   const { id } = useParams();
-  const { isAuth, getUserType } = useContext(context);
+  const { isAuth, getUserType, user } = useContext(context);
   const [data, setdata] = useState<ImasterCourses>();
+  const [studentReq, setStudentReq] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    buttonMessage: "",
+    cancelMessage: "",
+    headerMessage: "",
+    message: "",
+    color: "",
+  });
+  const [fetchActionType, setFetchActionType] = useState("");
+  const [seccess, setSeccess] = useState(false);
+  const [alertError, setAlertError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/masterCourses", {
@@ -22,16 +36,6 @@ const MastersPage = () => {
       });
   }, [id]);
 
-  const [studentReq, setStudentReq] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [modalInfo, setModalInfo] = useState({
-    buttonMessage: "",
-    cancelMessage: "",
-    headerMessage: "",
-    message: "",
-    color: "",
-  });
-  const [fetchActionType, setFetchActionType] = useState("");
   const activModal = (action: string) => {
     switch (action) {
       case "sendRequest":
@@ -54,13 +58,81 @@ const MastersPage = () => {
         });
         setFetchActionType("deleteLesson");
         break;
-   
     }
     setShowModal(true);
   };
   const activeFetch = () => {
     setShowModal(false);
-    console.log(fetchActionType);
+    switch (fetchActionType) {
+      case "sendRequest":
+        fetch("http://localhost:3000/studentsRequests", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstname: data?.firstname,
+            lastname: data?.lastname,
+            capicity: data?.capicity,
+            requests: {
+              accepted: false,
+              rejected: false,
+              NotChecked: true,
+            },
+            term: data?.term,
+            Course: data?.Course,
+            studentID: user.id,
+            masterID: data?.masterID,
+            req: studentReq,
+            res: "",
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("نتیجه:", result);
+            setSeccess(true);
+            setAlertError(false);
+            setTimeout(() => {
+              setSeccess(false);
+              navigate("/dashboard");
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("خطا:", error);
+            setSeccess(true);
+            setAlertError(true);
+            setTimeout(() => {
+              setSeccess(false);
+            }, 2000);
+          });
+        break;
+      case "deleteLesson":
+        fetch("http://localhost:3000/masterCourses/" + data?.id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("نتیجه:", result);
+            setSeccess(true);
+            setAlertError(false);
+            setTimeout(() => {
+              setSeccess(false);
+              navigate("/dashboard");
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("خطا:", error);
+            setSeccess(true);
+            setAlertError(true);
+            setTimeout(() => {
+              setSeccess(false);
+            }, 2000);
+          });
+        break;
+    }
   };
 
   if (!isAuth()) {
@@ -86,13 +158,21 @@ const MastersPage = () => {
           <div className="mb-20">
             <DashboardHeader menuOptins="صفحه اصلی" address="/dashboard" />
           </div>
-          <div className="w-screen px-5 sm:px-10 md:px-28 py-10 mt-20 ">
+          <div className=" px-5 sm:px-10 md:px-28 py-10 mt-20 ">
             <h1 className="flex justify-between text-gray-500 text-xl border-b-2 p-1 mb-10">
               <p>اطلاعات درخواست</p>
               <button className="text-xs mx-1 rounded bg-gray-400 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
                 <Link to={"/dashboard"}>بازگشت</Link>
               </button>
             </h1>
+            {seccess && (
+              <Alert
+                error={alertError}
+                title="خطا در انجام عملیات"
+                message="عملیات با موفقیت انجام شد"
+              />
+            )}
+
             <div className="bg-gray-50 p-2">
               <div className="lg:flex gap-4 sm:m-5">
                 <div className="flex gap-2 p-5 border-2 my-4">

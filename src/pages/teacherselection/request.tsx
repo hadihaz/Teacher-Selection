@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import DashboardHeader from "../../components/dashboard/dashboardHeader";
 import { useContext, useEffect, useState } from "react";
 import { context } from "../../context/mainContext";
@@ -7,6 +7,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { IstudentsRequests } from "../../core/interface/studentsRequests ";
 import Modal from "../../components/common/modal";
+import Alert from "../../components/common/alert";
 
 const RequestsPage = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const RequestsPage = () => {
   const [data, setdata] = useState<IstudentsRequests>();
   const [masterRes, setMasterRes] = useState(data?.res);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/studentsRequests", {
@@ -56,7 +58,7 @@ const RequestsPage = () => {
           message: "ایا میخواهید درخواستت را فبول کنید.",
           color: "green",
         });
-        setFetchActionType("dalate");
+        setFetchActionType("accept");
         break;
       case "reject":
         setModalInfo({
@@ -66,15 +68,111 @@ const RequestsPage = () => {
           message: "ایا میخواهید درخواست را رد کنید.",
           color: "red",
         });
-        setFetchActionType("dalate");
+        setFetchActionType("reject");
         break;
     }
     setShowModal(true);
   };
   const activeFetch = () => {
     setShowModal(false);
-    console.log(fetchActionType);
+    switch (fetchActionType) {
+      case "dalate":
+        fetch("http://localhost:3000/studentsRequests/" + data?.id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("نتیجه:", result);
+            setSeccess(true);
+            setAlertError(false);
+            setTimeout(() => {
+              setSeccess(false);
+              navigate("/dashboard");
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("خطا:", error);
+            setSeccess(true);
+            setAlertError(true);
+            setTimeout(() => {
+              setSeccess(false);
+            }, 2000);
+          });
+
+        break;
+      case "accept":
+        fetch("http://localhost:3000/studentsRequests/" + data?.id, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            requests: {
+              accepted: true,
+              rejected: false,
+              NotChecked: false,
+            },
+            res: masterRes,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("نتیجه:", result);
+            setSeccess(true);
+            setAlertError(false);
+            setTimeout(() => {
+              setSeccess(false);
+              navigate("/dashboard");
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("خطا:", error);
+            setSeccess(true);
+            setAlertError(true);
+            setTimeout(() => {
+              setSeccess(false);
+            }, 2000);
+          });
+
+        break;
+      case "reject":
+        fetch("http://localhost:3000/studentsRequests/" + data?.id, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            requests: {
+              accepted: false,
+              rejected: true,
+              NotChecked: false,
+            },
+            res: masterRes,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("نتیجه:", result);
+            setSeccess(true);
+            setAlertError(false);
+            setTimeout(() => {
+              setSeccess(false);
+              navigate("/dashboard");
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("خطا:", error);
+            setSeccess(true);
+            setAlertError(true);
+            setTimeout(() => {
+              setSeccess(false);
+            }, 2000);
+          });
+        break;
+    }
   };
+
+  const [seccess, setSeccess] = useState(false);
+  const [alertError, setAlertError] = useState(false);
 
   if (!isAuth()) {
     return <Navigate to={"/"}></Navigate>;
@@ -106,6 +204,13 @@ const RequestsPage = () => {
                 <Link to={"/dashboard"}>بازگشت</Link>
               </button>
             </h1>
+            {seccess && (
+              <Alert
+                error={alertError}
+                title="خطا در انجام عملیات"
+                message="عملیات با موفقیت انجام شد"
+              />
+            )}
             <div className="bg-gray-50 p-2">
               <div className="lg:flex gap-4 sm:m-5">
                 <div className="flex gap-2 p-5 border-2 my-4">
@@ -127,19 +232,19 @@ const RequestsPage = () => {
                 <div className="flex gap-2 p-5 border-2 my-4">
                   <p className="text-gray-600 w-16"> وضعیت:</p>
                   <div>
-                    {data.requests.accepted && (
+                    {data.requests?.accepted && (
                       <span className="flex gap-1 items-center text-green-500">
                         <FaCheckCircle />
                         <p>پذیرفته شده</p>
                       </span>
                     )}
-                    {data?.requests.NotChecked && (
+                    {data?.requests?.NotChecked && (
                       <span className="flex gap-1 items-center text-yellow-500">
                         <FaCircleQuestion />
                         <p>برسی نشده</p>
                       </span>
                     )}
-                    {data?.requests.rejected && (
+                    {data?.requests?.rejected && (
                       <span className="flex gap-1 items-center text-red-500">
                         <IoMdCloseCircle />
                         <p>رد شده</p>
@@ -159,7 +264,7 @@ const RequestsPage = () => {
                     value={data?.req}
                   ></textarea>
                 </div>
-                {!data?.requests.NotChecked && getUserType() == "student" && (
+                {!data?.requests?.NotChecked &&  (
                   <div className="mb-3">
                     <p className="text-gray-600 p-2 "> پاسخ استاد:</p>
                     <textarea
@@ -171,7 +276,7 @@ const RequestsPage = () => {
                     ></textarea>
                   </div>
                 )}
-                {data?.requests.NotChecked && getUserType() == "master" && (
+                {data?.requests?.NotChecked && getUserType() == "master" && (
                   <div className="mb-3">
                     <p className="text-gray-600 p-2 "> پاسخ استاد:</p>
                     <textarea
@@ -186,7 +291,7 @@ const RequestsPage = () => {
                 )}
               </div>
               <div className="lg:flex gap-4 sm:m-5 ">
-                {data?.requests.NotChecked && getUserType() == "student" && (
+                {data?.requests?.NotChecked && getUserType() == "student" && (
                   <button
                     className="rounded bg-red-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     onClick={() => activModal("dalate")}
@@ -194,7 +299,7 @@ const RequestsPage = () => {
                     لغو درخواست
                   </button>
                 )}
-                {data?.requests.NotChecked && getUserType() == "master" && (
+                {data?.requests?.NotChecked && getUserType() == "master" && (
                   <>
                     <button
                       className="mx-1 rounded bg-green-500 px-2 py-1 text-md font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"

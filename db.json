@@ -34,7 +34,7 @@
       "studentID": "c3b",
       "masterID": "1",
       "req": "درخواست پذیرش",
-      "res": "پاسخ درخواست",
+      "res": "test",
       "capicity": "10",
       "term": "1402/1403",
       "Course": "مهندسی کامپیوتر",
@@ -44,14 +44,14 @@
     {
       "id": "1asd275257as12",
       "requests": {
-        "accepted": true,
-        "rejected": false,
+        "accepted": false,
+        "rejected": true,
         "NotChecked": false
       },
       "studentID": "c3bb",
       "masterID": "1",
       "req": "درخواست پذیرش",
-      "res": "پاسخ درخواست",
+      "res": "test",
       "capicity": "10",
       "term": "1402/1403",
       "Course": "مهندسی کامپیوتر",
@@ -68,24 +68,26 @@
       "studentID": "c3bb",
       "masterID": "1",
       "req": "درخواست پذیرش",
-      "res": "پاسخ درخواست",
+      "res": "",
       "capicity": "10",
       "term": "1402/1403",
       "Course": "مهندسی کامپیوتر",
       "firstname": "درخواست",
-      "lastname": "3"
+      "lastname": "3",
+      "rejected": true,
+      "NotChecked": false
     },
     {
       "id": "1asda525727s13",
       "requests": {
         "accepted": false,
-        "rejected": true,
-        "NotChecked": false
+        "rejected": false,
+        "NotChecked": true
       },
       "studentID": "c3bb",
       "masterID": "1",
       "req": "درخواست پذیرش",
-      "res": "پاسخ درخواست",
+      "res": "",
       "capicity": "10",
       "term": "1402/1403",
       "Course": "مهندسی کامپیوتر",
@@ -98,7 +100,7 @@
       "id": "1asdas1",
       "capicity": "10",
       "term": "1402/1403",
-      "Course": "مهندسی کامپیوتر",
+      "Course": "کاراموزی مهندسی کامپیوتر",
       "firstname": "استاد1",
       "lastname": "استاد1",
       "email": "ostad@gmail.com",
