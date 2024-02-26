@@ -3,19 +3,19 @@
     {
       "id": "c3bb",
       "firstname": "هادی",
-      "lastname": "حاجی اصغرزاده",
+      "lastname": "حاجی اصغرزاده ",
       "email": "hadi@gmail.com",
       "phone_number": "09149999999",
       "national_id_number": "123456789",
       "student_number": "123456789",
       "major_name": "مهندسی کامپیوتر",
-      "password": "1234hadi",
+      "password": "456a456a",
       "usertype": "student"
     },
     {
       "id": "1",
       "firstname": "استاد",
-      "lastname": "1",
+      "lastname": "2222222",
       "email": "ostad@gmail.com",
       "password": "ostad1234",
       "national_id_number": "1234",

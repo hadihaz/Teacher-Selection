@@ -29,7 +29,7 @@ const schema = yup
 const StudentProfileChangeForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [success, setSuccess] = useState<boolean | null>(null);
-  const { user } = useContext(context);
+  const { user,dispatch } = useContext(context);
   const [firstname, setFirstName] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
   const [email, setEmail] = useState(user.email);
@@ -55,18 +55,38 @@ const StudentProfileChangeForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const [newData, setNewdata] = useState({});
+
   const onSubmit = (data: any) => {
-    console.log(data);
+    setNewdata(data)
     setShowModal(true);
   };
 
   const modalAction = () => {
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(null);
-    }, 3000);
     setShowModal(false);
-    // puth request for update profile
+    fetch("http://localhost:3000/users/" + user.id, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...newData,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("نتیجه:", result);
+        setSuccess(true);
+        dispatch("user", result);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("خطا:", error);
+        setSuccess(false);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 2000);
+      });
   };
   const modalCancel = () => {
     setShowModal(false);

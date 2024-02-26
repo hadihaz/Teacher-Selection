@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Alert from "../common/alert";
-import {  useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "../common/modal";
+import { context } from "../../context/mainContext";
 
 const schema = yup
   .object({
@@ -27,8 +28,9 @@ const schema = yup
   })
   .required();
 const ChangePassword = () => {
+  const { user,dispatch } = useContext(context);
+
   const [showModal, setShowModal] = useState(false);
-//   const { user } = useContext(context);
 
   const {
     register,
@@ -38,39 +40,37 @@ const ChangePassword = () => {
     resolver: yupResolver(schema),
   });
   const [success, setSuccess] = useState<boolean | null>(null);
+  const [newData, setNewdata] = useState({});
 
   const onSubmit = (data: any) => {
-    // fetch("http://localhost:3000/students", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Typ e": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     // setItem("user1", JSON.stringify(data));
-    //     console.log("نتیجه:", result);
-    //     // dispatch("user", data);
-    //     setSuccess(true);
-    //     // setTimeout(() => {
-    //     //   navigate("/dashboard");
-    //     // }, 1500);
-    //   })
-    //   .catch((error) => {
-    //     console.error("خطا:", error);
-    //     setSuccess(false);
-    //   });
-    console.log(data);
+    setNewdata({ password: data.password });
     setShowModal(true);
   };
   const modalAction = () => {
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(null);
-    }, 3000);
     setShowModal(false);
-    // puth request for update profile
+    fetch("http://localhost:3000/users/" + user.id, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...newData,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("نتیجه:", result);
+        setSuccess(true);
+        dispatch("user", result);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("خطا:", error);
+        setSuccess(false);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 2000);
+      });
   };
   const modalCancel = () => {
     setShowModal(false);
@@ -86,7 +86,7 @@ const ChangePassword = () => {
           cancelMessage="لغو"
           headerMessage="تغییر  رمز عبور"
           message="ایا میخواهید رمز عبورتان تغییر کند."
-          alertColor="red"
+          color="red"
         />
       )}
       <div className="h-[50px] mb-1">

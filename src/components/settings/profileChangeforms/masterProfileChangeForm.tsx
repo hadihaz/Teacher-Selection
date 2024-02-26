@@ -20,11 +20,10 @@ const schema = yup
     phone_number: yup
       .string()
       .matches(/^(\+98|0)?9\d{9}$/, "شماره تلفن نامعتبر"),
-
   })
   .required();
 const MasterProfileChangeForm = () => {
-  const { user } = useContext(context);
+  const { user, dispatch } = useContext(context);
   const [firstname, setFirstName] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
   const [email, setEmail] = useState(user.email);
@@ -38,7 +37,7 @@ const MasterProfileChangeForm = () => {
     setEmail(user.email);
     setNational_id_number(user.national_id_number);
     setPhone_number(user.phone_number);
-  }, [user]);
+  }, [user,]);
   const {
     register,
     handleSubmit,
@@ -46,20 +45,44 @@ const MasterProfileChangeForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const [newData, setNewdata] = useState({});
   const onSubmit = (data: any) => {
     console.log(data);
+    setNewdata(data);
     setShowModal(true);
   };
   const [showModal, setShowModal] = useState(false);
-
   const [success, setSuccess] = useState<boolean | null>(null);
-
   const modalAction = () => {
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(null);
-    }, 3000);
     setShowModal(false);
+    fetch("http://localhost:3000/users/" + user.id, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...newData,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("نتیجه:", result);
+        setSuccess(true);
+        dispatch("user", result);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("خطا:", error);
+        setSuccess(false);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 2000);
+      });
+
+    // setSuccess(true);
+    // setTimeout(() => {
+    //   setSuccess(null);
+    // }, 3000);
     // puth request for update profile
   };
   const modalCancel = () => {
