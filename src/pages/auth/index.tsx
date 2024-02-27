@@ -1,20 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Loginform from "../../components/auth/loginForm";
 import SigninForm from "../../components/auth/signinForm";
 import AuthHeader from "../../components/auth/authHeader";
 import { context } from "../../context/mainContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import formlogo from "../../assets/formlogo.png";
 const Auth = () => {
   const { isAuth } = useContext(context);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (isAuth()) {
-      navigate("/dashboard");
-    }
-  }, []);
   const [formType, setformType] = useState<boolean>(true);
+  if (isAuth()) {
+    return <Navigate to={"/dashboard"}></Navigate>;
+  }
   return (
     <div className={`lg:flex ${formType ? "lg:h-screen" : ""}`}>
       <div className="lg:w-1/2 bg-green-500 lg:bg-[#F2EBE4] p-3">
