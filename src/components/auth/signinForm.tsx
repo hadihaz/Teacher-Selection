@@ -13,12 +13,12 @@ const SigninForm = () => {
   const [formType, setFormtype] = useState(false);
   return (
     <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-      <div className="h-[50px] mb-6 ">
+      <div className="h-[50px] mb-10 ">
         {success && <Alert message="ثبت نام با موفقیت" />}
         {success === false && (
           <Alert
             error={true}
-            title="عملیات قبت نام انچام نشد. لطفا دوباره امتحان نمایید"
+            title="عملیات ثبت نام انچام نشد. لطفا دوباره امتحان نمایید"
           />
         )}
       </div>
