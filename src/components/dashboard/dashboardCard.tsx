@@ -44,9 +44,9 @@ const DashboardCard = () => {
 
   const changeFilter = (filterType: string) => {
     const filter = masters.filter((master) => {
-      if (filterType == "acceptsd") return master.requests.acceptsd;
-      else if (filterType == "rejected") return master.requests.rejected;
-      else if (filterType == "NotChecked") return master.requests.NotChecked;
+      if (filterType == "acceptsd") return master.requests?.accepted;
+      else if (filterType == "rejected") return master.requests?.rejected;
+      else if (filterType == "NotChecked") return master.requests?.NotChecked;
       else if (filterType == "all") return master.requests;
     });
     setFilterMasters(filter);
@@ -174,13 +174,13 @@ const DashboardCard = () => {
                         {user.term}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {user.requests.acceptsd && (
+                        {user.requests?.accepted && (
                           <span className="flex gap-1 items-center text-green-500">
                             <FaCheckCircle />
                             <p>پذیرفته شده</p>
                           </span>
                         )}
-                        {user.requests.NotChecked && (
+                        {user.requests?.NotChecked && (
                           <span className="flex gap-1 items-center text-yellow-500">
                             <FaCircleQuestion />
                             <span>برسی نشده</span>
@@ -189,7 +189,7 @@ const DashboardCard = () => {
                             </button>
                           </span>
                         )}
-                        {user.requests.rejected && (
+                        {user.requests?.rejected && (
                           <span className="flex gap-1 items-center text-red-500">
                             <IoMdCloseCircle />
                             <p>رد شده</p>

@@ -47,9 +47,9 @@ const StudentRequestsCard = () => {
 
   const changeFilter = (filterType: string) => {
     const filter = masters.filter((master) => {
-      if (filterType == "accepted") return master.requests.accepted;
-      else if (filterType == "rejected") return master.requests.rejected;
-      else if (filterType == "NotChecked") return master.requests.NotChecked;
+      if (filterType == "accepted") return master.requests?.accepted;
+      else if (filterType == "rejected") return master.requests?.rejected;
+      else if (filterType == "NotChecked") return master.requests?.NotChecked;
       else if (filterType == "all") return master.requests;
     });
     setFilterMasters(filter);
@@ -174,19 +174,19 @@ const StudentRequestsCard = () => {
                         {user.term}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {user.requests.accepted && (
+                        {user.requests?.accepted && (
                           <span className="flex gap-1 items-center text-green-500">
                             <FaCheckCircle />
                             <p>پذیرفته شده</p>
                           </span>
                         )}
-                        {user.requests.NotChecked && (
+                        {user.requests?.NotChecked && (
                           <span className="flex gap-1 items-center text-yellow-500">
                             <FaCircleQuestion />
                             <p>برسی نشده</p>
                           </span>
                         )}
-                        {user.requests.rejected && (
+                        {user.requests?.rejected && (
                           <span className="flex gap-1 items-center text-red-500">
                             <IoMdCloseCircle />
                             <p>رد شده</p>

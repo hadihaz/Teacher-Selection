@@ -39,7 +39,7 @@ const Loginform = () => {
   const location = useLocation();
   const { dispatch } = useContext(context);
   const onSubmit = (userData: any) => {
-    fetch("http://localhost:3000/users", {
+    fetch("http://0.0.0.0:3000/users", {
       method: "GET",
     })
       .then((response) => response.json())

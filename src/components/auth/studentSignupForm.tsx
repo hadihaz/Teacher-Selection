@@ -6,7 +6,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { context } from "../../context/mainContext";
 
-const StudentSignupForm = ({ setSuccess }: { setSuccess: (e:boolean) => void }) => {
+const StudentSignupForm = ({
+  setSuccess,
+}: {
+  setSuccess: (e: boolean) => void;
+}) => {
   const navigate = useNavigate();
   const { dispatch } = useContext(context);
   const location = useLocation();
@@ -24,7 +28,7 @@ const StudentSignupForm = ({ setSuccess }: { setSuccess: (e:boolean) => void }) 
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, usertype: "student" }),
     })
       .then((response) => response.json())
       .then((result) => {

@@ -23,12 +23,12 @@ const MasterSignupForm = ({
     resolver: yupResolver(masterSignupSchema),
   });
   const onSubmit = (data: any) => {
-    fetch("http://localhost:3000/users", {
+    fetch("http://0.0.0.0:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, usertype: "master" }),
     })
       .then((response) => response.json())
       .then((result) => {
