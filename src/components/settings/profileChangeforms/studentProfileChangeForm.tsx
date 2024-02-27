@@ -64,7 +64,7 @@ const StudentProfileChangeForm = () => {
 
   const modalAction = () => {
     setShowModal(false);
-    fetch("http://localhost:3000/users/" + user.id, {
+    fetch("http://0.0.0.0:3000/users/" + user.id, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

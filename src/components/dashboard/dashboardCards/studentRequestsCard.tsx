@@ -26,7 +26,7 @@ const StudentRequestsCard = () => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
-    fetch("http://localhost:3000/studentsRequests", {
+    fetch("http://0.0.0.0:3000/studentsRequests", {
       method: "GET",
     })
       .then((response) => response.json())

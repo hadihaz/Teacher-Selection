@@ -15,32 +15,12 @@
     {
       "id": "1",
       "firstname": "استاد",
-      "lastname": "2222222",
+      "lastname": "1",
       "email": "ostad@gmail.com",
       "password": "ostad1234",
       "national_id_number": "1234",
       "phone_number": "9149999999",
       "usertype": "master"
-    },
-    {
-      "id": "7844",
-      "firstname": "test",
-      "lastname": "test",
-      "email": "test@gmail.com",
-      "phone_number": "9149999999",
-      "national_id_number": "123456789",
-      "password": "456a456a",
-      "confirmPassword": "456a456a"
-    },
-    {
-      "id": "f22d",
-      "firstname": "hadi@gmail.com",
-      "lastname": "hadi@gmail.com",
-      "email": "hadi@gmail.com",
-      "phone_number": "9142222222",
-      "national_id_number": "123132",
-      "password": "456a456a",
-      "confirmPassword": "456a456a"
     }
   ],
   "studentsRequests": [
@@ -51,14 +31,14 @@
         "rejected": false,
         "NotChecked": false
       },
-      "studentID": "c3b",
+      "studentID": "c3bb",
       "masterID": "1",
       "req": "درخواست پذیرش",
-      "res": "test",
+      "res": "پاسخ درخواست",
       "capicity": "10",
       "term": "1402/1403",
-      "Course": "مهندسی کامپیوتر",
-      "firstname": "درخواست",
+      "Course": "کاراموزی مهندسی کامپیوتر",
+      "firstname": "استاد",
       "lastname": "1"
     },
     {
@@ -71,11 +51,11 @@
       "studentID": "c3bb",
       "masterID": "1",
       "req": "درخواست پذیرش",
-      "res": "test",
+      "res": "پاسخ درخواست",
       "capicity": "10",
       "term": "1402/1403",
-      "Course": "مهندسی کامپیوتر",
-      "firstname": "درخواست",
+      "Course": " پروژه تخصصی مهندسی کامپیوتر",
+      "firstname": "استاد",
       "lastname": "2"
     },
     {
@@ -91,11 +71,10 @@
       "res": "",
       "capicity": "10",
       "term": "1402/1403",
-      "Course": "مهندسی کامپیوتر",
-      "firstname": "درخواست",
+      "Course": "کاراموزی مهندسی برق",
+      "firstname": "استاد",
       "lastname": "3",
-      "rejected": true,
-      "NotChecked": false
+
     },
     {
       "id": "1asda525727s13",
@@ -110,8 +89,8 @@
       "res": "",
       "capicity": "10",
       "term": "1402/1403",
-      "Course": "مهندسی کامپیوتر",
-      "firstname": "درخواست",
+      "Course": " پروژه تخصصی مهندسی برق",
+      "firstname": "استاد",
       "lastname": "4"
     }
   ],

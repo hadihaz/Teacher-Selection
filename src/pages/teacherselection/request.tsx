@@ -18,7 +18,7 @@ const RequestsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/studentsRequests", {
+    fetch("http://0.0.0.0:3000/studentsRequests", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -77,7 +77,7 @@ const RequestsPage = () => {
     setShowModal(false);
     switch (fetchActionType) {
       case "dalate":
-        fetch("http://localhost:3000/studentsRequests/" + data?.id, {
+        fetch("http://0.0.0.0:3000/studentsRequests/" + data?.id, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const RequestsPage = () => {
 
         break;
       case "accept":
-        fetch("http://localhost:3000/studentsRequests/" + data?.id, {
+        fetch("http://0.0.0.0:3000/studentsRequests/" + data?.id, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -137,7 +137,7 @@ const RequestsPage = () => {
 
         break;
       case "reject":
-        fetch("http://localhost:3000/studentsRequests/" + data?.id, {
+        fetch("http://0.0.0.0:3000/studentsRequests/" + data?.id, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -23,7 +23,7 @@ const StudentSignupForm = ({
     resolver: yupResolver(studentSignupSchema),
   });
   const onSubmit = (data: any) => {
-    fetch("http://localhost:3000/users", {
+    fetch("http://0.0.0.0:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

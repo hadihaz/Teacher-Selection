@@ -24,7 +24,7 @@ const MastersPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/masterCourses", {
+    fetch("http://0.0.0.0:3000/masterCourses", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -65,7 +65,7 @@ const MastersPage = () => {
     setShowModal(false);
     switch (fetchActionType) {
       case "sendRequest":
-        fetch("http://localhost:3000/studentsRequests", {
+        fetch("http://0.0.0.0:3000/studentsRequests", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const MastersPage = () => {
           });
         break;
       case "deleteLesson":
-        fetch("http://localhost:3000/masterCourses/" + data?.id, {
+        fetch("http://0.0.0.0:3000/masterCourses/" + data?.id, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

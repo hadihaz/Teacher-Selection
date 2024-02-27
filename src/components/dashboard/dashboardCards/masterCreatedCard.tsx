@@ -21,7 +21,7 @@ const MasterCreatedCard = () => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
-    fetch("http://localhost:3000/masterCourses", {
+    fetch("http://0.0.0.0:3000/masterCourses", {
       method: "GET",
     })
       .then((response) => response.json())
