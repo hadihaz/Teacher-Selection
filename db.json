@@ -49,7 +49,7 @@
         "NotChecked": false
       },
       "studentID": "c3bb",
-      "masterID": "1",
+      "masterID": "1asdasd",
       "req": "درخواست پذیرش",
       "res": "پاسخ درخواست",
       "capicity": "10",
@@ -66,7 +66,7 @@
         "NotChecked": true
       },
       "studentID": "c3bb",
-      "masterID": "1",
+      "masterID": "1sadsa",
       "req": "درخواست پذیرش",
       "res": "",
       "capicity": "10",
@@ -84,7 +84,7 @@
         "NotChecked": true
       },
       "studentID": "c3bb",
-      "masterID": "1",
+      "masterID": "1sads",
       "req": "درخواست پذیرش",
       "res": "",
       "capicity": "10",
@@ -100,40 +100,40 @@
       "capicity": "10",
       "term": "1402/1403",
       "Course": "کاراموزی مهندسی کامپیوتر",
-      "firstname": "استاد1",
-      "lastname": "استاد1",
+      "firstname": "استاد",
+      "lastname": "1",
       "email": "ostad@gmail.com",
       "masterID": "1"
     },
     {
       "id": "e931",
-      "Course": "تست2",
-      "term": "22222222222",
-      "capicity": "2131321",
+      "Course": "کاراموزی مهندسی برق",
+      "term": "1402/1403",
+      "capicity": "100",
       "firstname": "استاد",
-      "lastname": "2222222",
+      "lastname": "4",
       "email": "ostad@gmail.com",
-      "masterID": "1"
+      "masterID": "1asdasdas"
     },
     {
       "id": "7ce7",
-      "Course": "asdsaaaaaaaaa",
-      "term": "asdasd",
+      "Course": "کاراموزی مهندسی کامپیوتر",
+      "term": "1402/1403",
       "capicity": "123",
       "firstname": "استاد",
-      "lastname": "2222222",
+      "lastname": "3",
       "email": "ostad@gmail.com",
-      "masterID": "1"
+      "masterID": "1asdas"
     },
     {
       "id": "2f94",
-      "Course": "jjjjjjj",
-      "term": "asdsad",
+      "Course": "کاراموزی مهندسی برق",
+      "term": "1402/1403",
       "capicity": "123",
       "firstname": "استاد",
-      "lastname": "2222222",
+      "lastname": "2",
       "email": "ostad@gmail.com",
-      "masterID": "1"
+      "masterID": "1sadasd"
     }
   ]
 }

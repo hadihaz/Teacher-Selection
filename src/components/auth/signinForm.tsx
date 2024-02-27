@@ -13,7 +13,7 @@ const SigninForm = () => {
   const [formType, setFormtype] = useState(false);
   return (
     <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-      <div className="h-[50px] mb-1">
+      <div className="h-[50px] mb-6 ">
         {success && <Alert message="ثبت نام با موفقیت" />}
         {success === false && (
           <Alert

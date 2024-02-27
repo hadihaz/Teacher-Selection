@@ -102,7 +102,7 @@ const MasterProfileChangeForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className=" gap-3 lg:flex">
-          <div>
+          <div className="lg:mb-0 mb-6">
             <label
               htmlFor="firstname"
               className="block text-sm font-medium leading-6 text-gray-900 undefined"
@@ -175,7 +175,7 @@ const MasterProfileChangeForm = () => {
         </div>
 
         <div className="lg:flex gap-2">
-          <div>
+          <div className="lg:mb-0 mb-6">
             <label
               htmlFor="phone_number"
               className="block text-sm font-medium leading-6 text-gray-900 undefined"

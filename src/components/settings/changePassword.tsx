@@ -97,7 +97,7 @@ const ChangePassword = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="lg:flex gap-2">
-          <div>
+          <div className="lg:mb-0 mb-6">
             <label
               htmlFor="password"
               className="block text-sm font-medium leading-6 text-gray-900 undefined"
