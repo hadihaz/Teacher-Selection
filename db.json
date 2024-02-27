@@ -2,14 +2,14 @@
   "users": [
     {
       "id": "c3bb",
-      "firstname": "هادی",
-      "lastname": "حاجی اصغرزاده ",
-      "email": "hadi@gmail.com",
+      "firstname": "دانشجو",
+      "lastname": "1",
+      "email": "student@gmail.com",
       "phone_number": "09149999999",
       "national_id_number": "123456789",
       "student_number": "123456789",
       "major_name": "مهندسی کامپیوتر",
-      "password": "456a456a",
+      "password": "123456789a",
       "usertype": "student"
     },
     {
@@ -17,7 +17,7 @@
       "firstname": "استاد",
       "lastname": "1",
       "email": "ostad@gmail.com",
-      "password": "ostad1234",
+      "password": "123456789a",
       "national_id_number": "1234",
       "phone_number": "9149999999",
       "usertype": "master"
