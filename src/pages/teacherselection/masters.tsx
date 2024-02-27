@@ -220,7 +220,7 @@ const MastersPage = () => {
                 )}
                 {getUserType() == "student" && (
                   <button
-                    className="mx-1 rounded bg-green-500 px-2 py-1    text-md font-semibold text-white shadow-sm green:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    className="mx-1 rounded bg-green-500 px-2 py-1 text-md font-semibold text-white shadow-sm green:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     onClick={() => activModal("sendRequest")}
                   >
                     ارسال درخواست

@@ -3,8 +3,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useEffect, useState } from "react";
 import { getItem } from "../core/localstorage/storage";
-// import { IstudentUser } from "../core/interface/studentUser";
-// import { ImasterUser } from "../core/interface/masterUser";
 
 interface Iuser{
   usertype: string;

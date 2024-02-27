@@ -48,12 +48,6 @@ const UserList = ({ users }: { users: any[] }) => {
                     <span className="text-red-500">رد شده</span>
                   )}
                 </td>
-                {/*                 
-                <td className="whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-3 space-x-3">
-                  <button className="rounded bg-red-600 px-2 py-1  text-md font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                    Delete
-                  </button>
-                </td> */}
               </tr>
             ))}
           </tbody>
