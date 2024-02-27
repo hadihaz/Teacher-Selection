@@ -37,7 +37,7 @@ const CreateCourse = () => {
   };
   const modalAction = () => {
     setShowModal(false);
-    fetch("http://0.0.0.0:3000/masterCourses", {
+    fetch("https://dbjson.liara.run/masterCourses", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -24,7 +24,7 @@ const MastersPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://0.0.0.0:3000/masterCourses", {
+    fetch("https://dbjson.liara.run/masterCourses", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -65,7 +65,7 @@ const MastersPage = () => {
     setShowModal(false);
     switch (fetchActionType) {
       case "sendRequest":
-        fetch("http://0.0.0.0:3000/studentsRequests", {
+        fetch("https://dbjson.liara.run/studentsRequests", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const MastersPage = () => {
           });
         break;
       case "deleteLesson":
-        fetch("http://0.0.0.0:3000/masterCourses/" + data?.id, {
+        fetch("https://dbjson.liara.run/masterCourses/" + data?.id, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

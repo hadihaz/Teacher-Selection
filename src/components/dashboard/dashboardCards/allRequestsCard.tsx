@@ -21,7 +21,7 @@ const AllRequestsCard = () => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
-    fetch("http://0.0.0.0:3000/masterCourses", {
+    fetch("https://dbjson.liara.run/masterCourses", {
       method: "GET",
     })
       .then((response) => response.json())

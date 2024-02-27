@@ -27,7 +27,7 @@ const DashboardCard = () => {
     setCurrentMasters(filterMasters.slice(indexOfFirstItem, indexOfLastItem));
   }, [filterMasters, currentPage, itemsPerPage]);
   useEffect(() => {
-    fetch("http://0.0.0.0:3000/studentsRequests", {
+    fetch("https://dbjson.liara.run/studentsRequests", {
       method: "GET",
     })
       .then((response) => response.json())

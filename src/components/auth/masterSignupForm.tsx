@@ -23,7 +23,7 @@ const MasterSignupForm = ({
     resolver: yupResolver(masterSignupSchema),
   });
   const onSubmit = (data: any) => {
-    fetch("http://0.0.0.0:3000/users", {
+    fetch("https://dbjson.liara.run/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
