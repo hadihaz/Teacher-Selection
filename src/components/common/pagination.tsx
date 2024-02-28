@@ -42,7 +42,7 @@ const Pagination: React.FC<IPaginationProps> = ({
           }}
           className="relative inline-flex items-center rounded-l-md px-2 py-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
         >
-          Prev
+          قبلی
         </a>
 
         {currentPage != 1 && (
@@ -94,7 +94,7 @@ const Pagination: React.FC<IPaginationProps> = ({
           }}
           className="relative inline-flex items-center rounded-r-md px-2 py-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
         >
-          Next
+          بعدی
         </a>
       </nav>
     </div>
