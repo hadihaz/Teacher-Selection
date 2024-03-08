@@ -1,0 +1,139 @@
+{
+  "users": [
+    {
+      "id": "c3bb",
+      "firstname": "دانشجو",
+      "lastname": "1",
+      "email": "student@gmail.com",
+      "phone_number": "09149999999",
+      "national_id_number": "123456789",
+      "student_number": "123456789",
+      "major_name": "مهندسی کامپیوتر",
+      "password": "123456789a",
+      "usertype": "student"
+    },
+    {
+      "id": "1",
+      "firstname": "استاد",
+      "lastname": "1",
+      "email": "ostad@gmail.com",
+      "password": "123456789a",
+      "national_id_number": "1234",
+      "phone_number": "9149999999",
+      "usertype": "master"
+    }
+  ],
+  "studentsRequests": [
+    {
+      "id": "1as752572das1",
+      "requests": {
+        "accepted": true,
+        "rejected": false,
+        "NotChecked": false
+      },
+      "studentID": "c3bb",
+      "masterID": "1",
+      "req": "درخواست پذیرش",
+      "res": "پاسخ درخواست",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": "کاراموزی مهندسی کامپیوتر",
+      "firstname": "استاد",
+      "lastname": "1"
+    },
+    {
+      "id": "1asd275257as12",
+      "requests": {
+        "accepted": false,
+        "rejected": true,
+        "NotChecked": false
+      },
+      "studentID": "c3bb",
+      "masterID": "1asdasd",
+      "req": "درخواست پذیرش",
+      "res": "پاسخ درخواست",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": " پروژه تخصصی مهندسی کامپیوتر",
+      "firstname": "استاد",
+      "lastname": "2"
+    },
+    {
+      "id": "1asd572572as12",
+      "requests": {
+        "accepted": false,
+        "rejected": false,
+        "NotChecked": true
+      },
+      "studentID": "c3bb",
+      "masterID": "1sadsa",
+      "req": "درخواست پذیرش",
+      "res": "",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": "کاراموزی مهندسی برق",
+      "firstname": "استاد",
+      "lastname": "3"
+
+    },
+    {
+      "id": "1asda525727s13",
+      "requests": {
+        "accepted": false,
+        "rejected": false,
+        "NotChecked": true
+      },
+      "studentID": "c3bb",
+      "masterID": "1sads",
+      "req": "درخواست پذیرش",
+      "res": "",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": " پروژه تخصصی مهندسی برق",
+      "firstname": "استاد",
+      "lastname": "4"
+    }
+  ],
+  "masterCourses": [
+    {
+      "id": "1asdas1",
+      "capicity": "10",
+      "term": "1402/1403",
+      "Course": "کاراموزی مهندسی کامپیوتر",
+      "firstname": "استاد",
+      "lastname": "1",
+      "email": "ostad@gmail.com",
+      "masterID": "1"
+    },
+    {
+      "id": "e931",
+      "Course": "کاراموزی مهندسی برق",
+      "term": "1402/1403",
+      "capicity": "100",
+      "firstname": "استاد",
+      "lastname": "4",
+      "email": "ostad@gmail.com",
+      "masterID": "1asdasdas"
+    },
+    {
+      "id": "7ce7",
+      "Course": "کاراموزی مهندسی کامپیوتر",
+      "term": "1402/1403",
+      "capicity": "123",
+      "firstname": "استاد",
+      "lastname": "3",
+      "email": "ostad@gmail.com",
+      "masterID": "1asdas"
+    },
+    {
+      "id": "2f94",
+      "Course": "کاراموزی مهندسی برق",
+      "term": "1402/1403",
+      "capicity": "123",
+      "firstname": "استاد",
+      "lastname": "2",
+      "email": "ostad@gmail.com",
+      "masterID": "1sadasd"
+    }
+  ]
+}
